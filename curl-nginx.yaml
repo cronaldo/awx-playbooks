@@ -10,4 +10,4 @@
       changed_when: false
 
     - name: Execute curl command
-      shell: curl {{ ip_address.stdout }}
+      shell: curl http://{{ ip_address.stdout }}
