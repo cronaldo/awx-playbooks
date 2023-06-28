@@ -5,4 +5,4 @@
   gather_facts: true
   tasks:
     - name: Execute curl command
-      command: curl {{ ansible_default_ipv4.address }}
+      command: curl {{ ansible_facts.ansible_default_ipv4.address }}
