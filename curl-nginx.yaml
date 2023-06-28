@@ -1,13 +1,17 @@
 ---
-- name: Execute curl command
+- name: Obter endereço IP e usar no comando curl
   hosts: all
-  connection: local
-  gather_facts: false
-  tasks:
-    - name: Get machine IP address
-      shell: hostname -I | awk '{print $1}'
-      register: ip_address
-      changed_when: false
+  gather_facts: true
 
-    - name: Execute curl command
-      shell: curl http://{{ ip_address.stdout }}
+  tasks:
+    - name: Obter endereço IP
+      set_fact:
+        ip_address: "{{ ansible_default_ipv4.address }}"
+
+    - name: Executar comando curl com o endereço IP obtido
+      command: curl http://{{ ip_address }}
+      register: curl_output
+
+    - name: Exibir saída do comando curl
+      debug:
+        var: curl_output.stdout
