@@ -5,9 +5,9 @@
   gather_facts: false
   tasks:
     - name: Get machine IP address
-      command: hostname -I
+      shell: hostname -I | awk '{print $1}'
       register: ip_address
       changed_when: false
 
     - name: Execute curl command
-      command: curl {{ ip_address.stdout | trim }}
+      shell: curl {{ ip_address.stdout }}
