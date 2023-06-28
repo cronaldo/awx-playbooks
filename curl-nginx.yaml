@@ -5,7 +5,7 @@
   gather_facts: false
   tasks:
     - name: Get machine IP address
-      command: hostname -I
+      shell: hostname -I
       register: ip_address
 
     - name: Execute curl command
