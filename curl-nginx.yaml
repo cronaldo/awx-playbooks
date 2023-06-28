@@ -1,8 +1,13 @@
 ---
 - name: Execute curl command
-  hosts: all
+  hosts: localhost
   connection: local
-  gather_facts: true
+  gather_facts: false
   tasks:
+    - name: Get machine IP address
+      command: hostname -I
+      register: ip_address
+      changed_when: false
+
     - name: Execute curl command
-      command: curl {{ ansible_facts.ansible_default_ipv4.address }}
+      command: curl {{ ip_address.stdout | trim }}
