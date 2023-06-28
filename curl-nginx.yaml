@@ -1,0 +1,12 @@
+---
+- name: Execute curl command
+  hosts: all
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Get machine IP address
+      command: hostname -I
+      register: ip_address
+
+    - name: Execute curl command
+      command: curl {{ ip_address.stdout }}
