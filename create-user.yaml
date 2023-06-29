@@ -1,11 +1,11 @@
 ---
-- name: Criar user
-hosts: all
-become: yes
+- name: Criar usuário demo no Red Hat
+  hosts: all
+  become: yes
 
-tasks:
-  - name: Criar usuar
-  user:
-    name: demo
-    state: present
-    shell: /bin/bash
+  tasks:
+    - name: Criar usuário demo
+      user:
+        name: demo
+        state: present
+        shell: /bin/bash
