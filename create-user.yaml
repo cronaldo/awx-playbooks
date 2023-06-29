@@ -1,0 +1,11 @@
+---
+- name: Criar user
+hosts: all
+become: yes
+
+tasks:
+  - name: Criar usuar
+  user:
+    name: demo
+    state: present
+    shell: /bin/bash
